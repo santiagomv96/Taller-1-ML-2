@@ -14,12 +14,16 @@ class PCA(unsupervised_class):
         n_vectors: How many vectors you will use
         ''' 
         self.x=x  
+        #compute the vectors
         self.U, self.s, self.Vt = np.linalg.svd(self.x) 
+        #take the n_components we need
         Uk = self.U[:, :self.n_vectors]
         sk = np.diag(self.s[:self.n_vectors])
-        Vk = self.Vt[:self.n_vectors, :]        
+        Vk = self.Vt[:self.n_vectors, :]    
+        #compute mean and std to standarization    
         self.mu = np.mean(self.x, axis=0)
         self.sigma = np.std(self.x, axis=0)
+        #compute truncate svd
         self.truncate_svd = np.dot(Uk, np.dot(sk, Vk))
 
     def transform(self,x):   
