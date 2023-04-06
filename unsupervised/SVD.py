@@ -1,7 +1,6 @@
 import numpy as np
-import unsupervised_class
 
-class PCA(unsupervised_class):
+class SVD:
 
     def __init__(self,n_vectors):   
         self.n_vectors=n_vectors 

@@ -1,5 +1,4 @@
 import numpy as np
-from unsupervised import unsupervised_class
 
 class PCA:
 
