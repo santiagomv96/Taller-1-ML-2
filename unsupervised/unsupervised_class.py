@@ -1,5 +1,6 @@
 class unsupervised_class:
     def __init___(self):
+        print('uns')
         pass
 
     def fit(self, x):

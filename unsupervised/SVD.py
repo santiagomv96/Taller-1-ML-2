@@ -3,11 +3,10 @@ import unsupervised_class
 
 class PCA(unsupervised_class):
 
-    def __init__(self,x,n_vectors):   
+    def __init__(self,n_vectors):   
         self.n_vectors=n_vectors 
-        self.x=x
 
-    def fit(self,x,n_vectors):
+    def fit(self,x):
         '''Creates the matrtixes for SVD transformation and generates the truncate matrix, which allows
         to reduce new features using
         params used:
@@ -15,7 +14,6 @@ class PCA(unsupervised_class):
         n_vectors: How many vectors you will use
         ''' 
         self.x=x  
-        self.n_vectors=n_vectors 
         self.U, self.s, self.Vt = np.linalg.svd(self.x) 
         Uk = self.U[:, :self.n_vectors]
         sk = np.diag(self.s[:self.n_vectors])
@@ -29,9 +27,8 @@ class PCA(unsupervised_class):
         X_new_scaled = X_new_centered / self.sigma
         return np.dot(X_new_scaled, self.truncate_svd)
     
-    def fit_transform(self,x,n_vectors):
+    def fit_transform(self,x):
         self.x=x  
-        self.n_vectors=n_vectors 
-        self.fit(x,n_vectors)
-        return self.fit(x,n_vectors)
+        self.fit(x,self.n_vectors)
+        return self.fit(x,self.n_vectors)
     
