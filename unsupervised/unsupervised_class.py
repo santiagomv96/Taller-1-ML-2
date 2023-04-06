@@ -8,5 +8,5 @@ class unsupervised_class:
     def transform(self, x):
         raise NotImplementedError
     
-    def fit_transform(self, x):        
-        return self.transform(self.fit(x))
+    def fit_transform(self, x):  
+        raise NotImplementedError
