@@ -9,7 +9,7 @@ class PCA:
         '''Creates the params for PCA transformation'''   
         self.x=x 
         self.mean_x=np.mean(self.x, axis=0)
-        x_centered=self.x - self.mean_x
+        # x_centered=self.x - self.mean_x
         # cov_matrix=(1/len(self.x))*(x_centered.T @ x_centered)
         #compute cov matrix
         cov_matrix=np.cov(self.x, rowvar=False)
