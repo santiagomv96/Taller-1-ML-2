@@ -16,22 +16,27 @@ class SVD:
         #compute the vectors
         self.U, self.s, self.Vt = np.linalg.svd(self.x) 
         #take the n_components we need
-        Uk = self.U[:, :self.n_vectors]
-        sk = np.diag(self.s[:self.n_vectors])
-        Vk = self.Vt[:self.n_vectors, :]    
+        self.Uk = self.U[:, :self.n_vectors]
+        self.sk = np.diag(self.s[:self.n_vectors])
+        self.Vk = self.Vt[:self.n_vectors, :]    
         #compute mean and std to standarization    
         self.mu = np.mean(self.x, axis=0)
         self.sigma = np.std(self.x, axis=0)
         #compute truncate svd
-        self.truncate_svd = np.dot(Uk, np.dot(sk, Vk))
+        # self.truncate_svd = (Uk@ np.diag(sk)@ Vk)
+        self.truncate_svd=self.Vk.T
 
     def transform(self,x):   
-        X_new_centered = x - self.mu
-        X_new_scaled = X_new_centered / self.sigma
-        return np.dot(X_new_scaled, self.truncate_svd)
+        # X_new_centered = x - self.mu
+        # X_new_scaled = X_new_centered / self.sigma
+        # return np.dot(X_new_scaled, self.truncate_svd)
+        return ( x@ self.truncate_svd)
     
     def fit_transform(self,x):
         self.x=x  
-        self.fit(x,self.n_vectors)
-        return self.fit(x,self.n_vectors)
+        self.fit(x)
+        return self.transform(x)
     
+    def inverse_transform(self): 
+        X_reconstructed = ( self.x@ self.truncate_svd).dot(self.truncate_svd.T) + np.mean(self.x, axis=0)      
+        return X_reconstructed
