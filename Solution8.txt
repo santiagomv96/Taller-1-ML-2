@@ -1,0 +1,3 @@
+i am not sure about it will works but i think thay if we make another dimension reduction on
+the eingenvalues an vectors that we do not use on one component this, could proives more information
+but i will not be too representative

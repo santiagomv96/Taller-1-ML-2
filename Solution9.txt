@@ -1,0 +1,4 @@
+UMAP is a way to reduce the dimension of a data set, taking them from a high level and whit graph teory 
+making a geometrical figure wich is on a KNN model, this figure is called varity, and keep the structure
+and relasionship between de features, this varity will be used to transform the features on a smaller
+information plain, it is optimized by descensed gradient method using de shanon entroy as a error measure

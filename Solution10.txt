@@ -1,0 +1,7 @@
+LDA is a method based on statistics and probability wich is used normaly on Languaje problems, helpign to
+get an analisis about the topics on de data.
+
+It works "thinking" that all topics are on the data and with that intension gets a probability about
+the appearence on the information.
+
+it is usefull on feelings detection and email spam classifiers
